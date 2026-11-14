@@ -1,0 +1,19 @@
+# 2 files, 18 findings
+high	NC002	edge-rtr1:line 4	enable password is stored reversibly or in cleartext; use 'enable secret' with scrypt (type 9)
+high	NC004	edge-rtr1:line 7	local user with 'password' (cleartext or type 7 reversible); use 'secret' with scrypt (type 9)
+high	NC003	edge-rtr1:line 11	SNMP community uses the well-known name 'public'
+high	NC003	edge-rtr1:line 12	SNMP community with read-write access; prefer SNMPv3 and read-only
+high	NC005	edge-rtr1:line 19	line password is a well-known default
+high	NC001	edge-rtr1:line 20	line vty 0 4: transport input all allows telnet; use 'transport input ssh'
+high	NC005	edge-rtr1:line 21	line password is a well-known default
+high	NC001	edge-rtr1:line 24	line vty 5 15: transport input telnet ssh allows telnet; use 'transport input ssh'
+medium	NC009	edge-rtr1:line 1	no remote syslog server configured
+medium	NC010	edge-rtr1:line 1	SSH version 2 is not enforced ('ip ssh version 2')
+medium	NC011	edge-rtr1:line 1	line passwords present and 'service password-encryption' is missing
+medium	NC006	edge-rtr1:line 5	MD5 (type 5) secret is weak against offline cracking; use scrypt (type 9) where supported
+medium	NC007	edge-rtr1:line 10	plain HTTP management server enabled; use 'no ip http server' or HTTPS with an ACL
+medium	NC008	edge-rtr1:line 20	line vty 0 4: no access-class, any source can reach the VTY lines
+medium	NC008	edge-rtr1:line 24	line vty 5 15: no access-class, any source can reach the VTY lines
+low	NC012	edge-rtr1:line 1	no NTP server: log timestamps cannot be trusted
+low	NC012	edge-rtr1:line 1	no login banner
+low	NC012	edge-rtr1:line 1	IP source routing is not disabled ('no ip source-route')
