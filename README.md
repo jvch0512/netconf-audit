@@ -2,6 +2,8 @@
 
 Network device configs are full of the same avoidable mistakes: telnet on the VTY lines, reversible passwords, default SNMP communities, a plain HTTP management server. netconf-audit reads IOS style configuration files and reports them with the line number and a fix, so a review of a whole estate takes minutes. It only reads the text of the file, it never connects to a device.
 
+![Terminal demo of netconf-audit on its sample data](docs/demo.svg)
+
 **Live demo:** https://jvch0512.github.io/netconf-audit/ (Synthetic configs for two invented devices.)
 
 Tcl 8.6 (tclsh), standard library only. The demo page is rendered from the tool's `--tsv` output by `scripts/site.py` (Python 3, only needed to regenerate the page).
@@ -52,3 +54,13 @@ make test    # 51 tcltest cases
 ```
 
 MIT.
+
+## Code scanning (SARIF)
+
+`scripts/tsv2sarif.py` converts the `--tsv` output into SARIF 2.1.0, so findings show up in GitHub code scanning:
+
+```sh
+./bin/netconf-audit examples/configs --tsv | python3 scripts/tsv2sarif.py --tool netconf-audit --prefix examples/configs > results.sarif
+```
+
+Upload `results.sarif` with `github/codeql-action/upload-sarif`. Severities map to SARIF levels (critical and high to error, medium to warning, low and info to note) and to a `security-severity` score.
